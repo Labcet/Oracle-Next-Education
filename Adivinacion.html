@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Adivinacion</title>
+</head>
+<body>
+
+</body>
+<script type="text/javascript">
+
+	function saltarLinea() {
+        document.write("<br>");    
+        document.write("<br>");    
+        document.write("<br>");  
+    }  
+    function imprimir(frase) {
+        document.write("<big>" + frase + "</big>");
+        saltarLinea();
+    }
+
+    function sortea(n) {
+        return Math.round(Math.random()*n);
+    }
+
+    var numeroPrincipal = sortea(9);
+
+    var numeroIngresado = parseInt(prompt("Adivine el numero (1-10):"));
+
+    if(numeroIngresado == numeroPrincipal){
+
+        imprimir("Adivino el numero!!");
+    } else {
+
+        if(numeroIngresado > numeroPrincipal){
+
+            imprimir("Fallo, el numero ingresado es mayor");
+        } else {
+
+            imprimir("Fallo, el numero ingresado es menor");
+        }
+        
+    }
+
+</script>
+</html>
