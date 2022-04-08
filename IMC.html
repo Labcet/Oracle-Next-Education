@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>IMC</title>
+</head>
+<body>
+
+</body>
+<script type="text/javascript">
+
+	function saltarLinea() {
+        document.write("<br>");    
+        document.write("<br>");    
+        document.write("<br>");  
+    }  
+    function imprimir(frase) {
+        document.write("<big>" + frase + "</big>");
+        saltarLinea();
+    }
+
+    function imc(peso, altura){
+
+    	var imc = peso/(altura*altura);	
+		return imc;   	
+    }
+
+    var pesoInformado = prompt("Ingrese su peso:");
+    var alturaInformada = prompt("Ingrese su altura:");
+
+    var imcCalculado = imc(pesoInformado,alturaInformada);
+
+    imprimir("El IMC calculado es: " + imcCalculado);
+
+    if(imcCalculado < 18.5){
+
+        imprimir("Insuficiencia ponderal");
+    }
+    if(imcCalculado >= 18.5 && imcCalculado <=24.9){
+
+        imprimir("Intervalo normal");   
+    }
+    if(imcCalculado >= 25 & imcCalculado < 30){
+
+        imprimir("Sobrepeso");
+    }
+    if(imcCalculado >= 30){
+
+        imprimir("Obesidad");
+    }
+
+</script>
+</html>
