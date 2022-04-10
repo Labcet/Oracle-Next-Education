@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Canvas</title>
+</head>
+<body>
+
+	<canvas width="600" height="400"></canvas>
+
+</body>
+
+<script type="text/javascript">
+	
+	var pantalla = document.querySelector("canvas");
+    var pincel = pantalla.getContext("2d");
+    pincel.fillStyle = "lightgray";
+    pincel.fillRect(0, 0, 600, 400);
+
+    function dibujarCirculo(x, y, radio, color) {
+
+        pincel.fillStyle = color;
+        pincel.beginPath();
+        pincel.arc(x, y, radio, 0, 2*3.14);
+        pincel.fill();
+    }
+
+    function dibujarFlor(x,y){
+
+    	dibujarCirculo(x,y,20,"red"); // (x,y)
+	    dibujarCirculo(x,y-40,20,"yellow"); // (x,y-40)
+	    dibujarCirculo(x+40,y,20,"black"); // (x+40,y)
+	    dibujarCirculo(x,y+40,20,"blue"); // (x,y+40)
+	    dibujarCirculo(x-40,y,20,"orange"); // (x-40,y)
+    }
+
+    dibujarFlor(250,150);
+
+</script>
+
+</html>
