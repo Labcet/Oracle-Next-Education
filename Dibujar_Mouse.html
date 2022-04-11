@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Dibujar con el Mouse</title>
+</head>
+<body>
+
+	<canvas width="600" height="400"></canvas>
+
+</body>
+
+<script type="text/javascript">
+	
+	var pantalla = document.querySelector('canvas');
+    var pincel = pantalla.getContext('2d');
+
+    pincel.fillStyle = 'grey';
+    pincel.fillRect(0, 0, 600, 400);
+
+    var puedoDibujar = false;
+
+    function dibujarCirculo(evento) {
+
+        if(puedoDibujar) {
+            var x = evento.pageX - pantalla.offsetLeft;
+            var y = evento.pageY - pantalla.offsetTop;
+            
+            if(x > 0 && y > 50 || x > 150 && y > 0){
+	            pincel.beginPath();
+	            pincel.arc(x, y, 5, 0, 2 * 3.14);
+	            pincel.fill();
+	        }
+        }
+
+    }
+
+    pantalla.onmousemove = dibujarCirculo;
+
+    function habilitarDibujar() {
+
+        puedoDibujar = true;
+    }
+
+    function deshabilitarDibujar() {
+
+        puedoDibujar = false;
+    }
+
+    function paleta(){
+
+    	pincel.fillStyle = "red";
+    	pincel.fillRect(0,0,50,50);
+    	pincel.fillStyle = "green";
+    	pincel.fillRect(50,0,50,50);
+    	pincel.fillStyle = "blue";
+    	pincel.fillRect(100,0,50,50);
+    }
+
+    function seleccionarColor(evento){
+
+    	var xColor = evento.pageX - pantalla.offsetLeft;
+        var yColor = evento.pageY - pantalla.offsetTop;
+
+    	if(xColor <= 50 && xColor >= 0 && yColor <= 50 && yColor >= 0){
+    		pincel.fillStyle = "red";
+    	}
+    	else if(xColor <= 100 && xColor > 50 && yColor <= 50 && yColor >= 0){
+    		pincel.fillStyle = "green";
+    	}
+    	else if(xColor <= 150 && xColor > 100 && yColor <= 50 && yColor >= 0){
+    		pincel.fillStyle = "blue";
+    	}
+    }
+
+    pantalla.onmousedown = habilitarDibujar;
+
+    pantalla.onmouseup = deshabilitarDibujar;
+
+    pantalla.onclick = seleccionarColor;
+
+    paleta();
+
+</script>
+
+</html>
