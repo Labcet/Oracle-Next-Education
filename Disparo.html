@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>CALCULAR LA MEDIA DE LAS EDADES</title>
+</head>
+<body>
+
+    <canvas width="600" height="400"></canvas>
+
+</body>
+<script type="text/javascript">
+
+    var pantalla = document.querySelector("canvas");
+    var pincel = pantalla.getContext("2d");
+
+    var radio = 10;
+    var coordenadaX;
+    var coordenadaY;
+
+    pincel.fillStyle = "lightgrey";
+    pincel.fillRect(0,0,600,400);
+
+    function dibujaCirculo(x,y,radio,color){
+
+        pincel.fillStyle = color;
+        pincel.beginPath();
+        pincel.arc(x,y,radio,0,2*Math.PI);
+        pincel.fill();
+    }
+
+    function limpiarPantalla(){
+
+        pincel.clearRect(0,0,600,400);
+    }
+
+    function actualizarPantalla(){
+
+        limpiarPantalla();
+        coordenadaX = Math.floor(Math.random()*600);
+        coordenadaY = Math.floor(Math.random()*400);
+        dibujaCirculo(coordenadaX,coordenadaY,radio+20,"red");
+        dibujaCirculo(coordenadaX,coordenadaY,radio+10,"white");
+        dibujaCirculo(coordenadaX,coordenadaY,radio,"red");
+    }
+
+    function disparo(evento){
+
+        var x = evento.pageX - pantalla.offsetLeft;
+        var y = evento.pageY - pantalla.offsetTop;
+
+        if(x < coordenadaX + radio && x > coordenadaX - radio && y < coordenadaY + radio && y > coordenadaY - radio){
+            alert("Tiro Certero!");
+        }
+    }
+    
+    pantalla.onclick = disparo;
+
+</script>
+</html>
